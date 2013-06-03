@@ -1,0 +1,15 @@
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/action_add_new_sim"
+        android:title="@string/action_new_sim"
+        android:titleCondensed="@string/action_new_sim_cond"
+        android:icon="@android:drawable/ic_menu_add"
+        android:orderInCategory="100"
+        android:showAsAction="always|withText" />
+
+    <item android:id="@+id/action_view_sim_list"
+          android:title="@string/action_view_authorized_list"
+          android:titleCondensed="@string/action_view_authorized_list_cond"
+          android:icon="@android:drawable/ic_menu_agenda"
+          android:orderInCategory="100"
+          android:showAsAction="always|withText" />
+</menu>

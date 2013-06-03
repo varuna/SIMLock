@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">SIM Lock</string>
+    <string name="action_new_sim">Authorize SIM</string>
+    <string name="action_new_sim_cond">Authorize</string>
+    <string name="action_view_authorized_list">Authorized SIM list</string>
+    <string name="action_view_authorized_list_cond">SIM list</string>
+
+    <string name="lost_sms">Somebody has stolen your phone and using number %1$s and SIM with serial
+        %2$s. The device
+        location is Lat : %3$d and Lon : %4$d
+    </string>
+
+    <string name="unlock_screen_button_label">Unlock</string>
+    <string name="cancel_button_label">Cancel</string>
+    <string name="owner_lock_hint">Enter the passcode</string>
+    <string name="add_sim_as_owner_button_label">Add to my list</string>
+
+    <string name="phone_number_label">Phone number : %1$s</string>
+    <string name="serial_number_label">Serial number : %1$s</string>
+    <string name="remove_list_sim">Remove</string>
+    <string name="set_owner_passcode_button_label">Set owner passcode</string>
+    <string name="phone_edittext_label">Inform number</string>
+    <string name="hint_emergency_phone">inform if stolen</string>
+    <string name="inform_number_list_label">Inform the number %1$s</string>
+    <string name="stolen_device_lock_message">Did you know that this device does not belong to you. Owner has locked the device.
+    </string><string name="sim_information_header">SIM information</string><string name="phone_number_label_">Phone</string>
+
+
+</resources>

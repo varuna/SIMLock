@@ -3,5 +3,7 @@
     <color name="white">#FFFFFF</color>
     <color name="red">#A00000</color>
     <color name="gray">#C0C0C0</color>
+    <color name="list_light_gray">#808080</color>
     <color name="dark_gray">#909090</color>
+    <color name="list_dark_gray">#404040</color>
 </resources>

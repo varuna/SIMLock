@@ -22,6 +22,8 @@ public class SecurityManager {
     private final static String OWNER_PRIVATE_SERIAL_TEMPLATE = "OWNER_SIM_SERIAL_0";
     private final static String OWNER_PRIVATE_PHONE_TEMPLATE = "OWNER_PRIVATE_PHONE_0";
     private final static String OWNER_PRIVATE_INFORM_PHONE_TEMPLATE = "OWNER_PRIVATE_INFORM_PHONE_0";
+    private final static String OWNER_PRIVATE_TAG_TEMPLATE = "OWNER_PRIVATE_TAG_0";
+    private final static String OWNER_PRIVATE_TYPE_TEMPLATE = "OWNER_PRIVATE_TYPE_0";
     private final static String OWNER_PRIVATE_PASSWORD = "OWNER_SCREEN_PASSWORD_HASH";
     private Context mContext;
     private RegisteredSimListAdapter mRegisteredSimListAdapter;
@@ -33,12 +35,15 @@ public class SecurityManager {
     }
 
     public static void lostMode(Context context) {
-        AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-        Intent i = new Intent(context, LostModeActivity.class);
-        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent pi = PendingIntent.getActivity(context, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
-        am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 2000, pi);
+//        AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
+//        Intent i = new Intent(context, LostModeActivity.class);
+//        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+//        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+//        PendingIntent pi = PendingIntent.getActivity(context, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
+//        am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 2000, pi);
+
+        Intent i = new Intent("com.varunarl.simlock.LOST_DEVICE");
+        context.sendBroadcast(i);
     }
 
     public RegisteredSimListAdapter getRegisteredSimListAdapter(Activity context) {
@@ -47,11 +52,14 @@ public class SecurityManager {
         return mRegisteredSimListAdapter;
     }
 
-    public void addOwnerSIM(String phone, String inform) {
+    public void addOwnerSIM(SIMType type, String tag, String phone, String inform) {
         int i = 0;
         SIMInfo si = getCurrentSimInfo();
         si.inform = inform;
         si.phone = phone;
+        si.tag = tag;
+        si.type = type;
+        Toast.makeText(mContext, si.toString(), Toast.LENGTH_SHORT).show();
         mLastInformPhoneNumber = inform;
         if (availableInSimList(si.serial))
             return;
@@ -67,7 +75,10 @@ public class SecurityManager {
         prefEditor.putString(OWNER_PRIVATE_SERIAL_TEMPLATE + i, si.serial);
         prefEditor.putString(OWNER_PRIVATE_PHONE_TEMPLATE + i, si.phone);
         prefEditor.putString(OWNER_PRIVATE_INFORM_PHONE_TEMPLATE + i, si.inform);
+        prefEditor.putString(OWNER_PRIVATE_TAG_TEMPLATE + i, si.tag);
+        prefEditor.putString(OWNER_PRIVATE_TYPE_TEMPLATE + i, si.type.toString());
         prefEditor.commit();
+
         if (mRegisteredSimListAdapter != null)
             mRegisteredSimListAdapter.notifyDataSetChanged();
     }
@@ -88,6 +99,8 @@ public class SecurityManager {
             si.serial = mContext.getSharedPreferences(OWNER_INFO, Context.MODE_PRIVATE).getString(OWNER_PRIVATE_SERIAL_TEMPLATE + i, "");
             si.phone = mContext.getSharedPreferences(OWNER_INFO, Context.MODE_PRIVATE).getString(OWNER_PRIVATE_PHONE_TEMPLATE + i, "");
             si.inform = mContext.getSharedPreferences(OWNER_INFO, Context.MODE_PRIVATE).getString(OWNER_PRIVATE_INFORM_PHONE_TEMPLATE + i, "");
+            si.tag = mContext.getSharedPreferences(OWNER_INFO, Context.MODE_PRIVATE).getString(OWNER_PRIVATE_TAG_TEMPLATE + i, "");
+            si.type = SIMType.fromString(mContext.getSharedPreferences(OWNER_INFO, Context.MODE_PRIVATE).getString(OWNER_PRIVATE_TYPE_TEMPLATE + i, ""));
             simList.add(si);
         }
 
@@ -168,12 +181,14 @@ public class SecurityManager {
                 found = true;
                 break;
             }
-        Toast.makeText(mContext, info.toString() + String.valueOf(found), Toast.LENGTH_LONG).show();
+
         if (found) {
             SharedPreferences.Editor editor = mContext.getSharedPreferences(OWNER_INFO, Context.MODE_PRIVATE).edit();
             editor.remove(OWNER_PRIVATE_PHONE_TEMPLATE + i);
             editor.remove(OWNER_PRIVATE_SERIAL_TEMPLATE + i);
             editor.remove(OWNER_PRIVATE_INFORM_PHONE_TEMPLATE + i);
+            editor.remove(OWNER_PRIVATE_TAG_TEMPLATE + i);
+            editor.remove(OWNER_PRIVATE_TYPE_TEMPLATE + i);
             editor.commit();
             if (mRegisteredSimListAdapter != null)
                 mRegisteredSimListAdapter.notifyDataSetChanged();
@@ -195,6 +210,8 @@ public class SecurityManager {
                 break;
             }
         }
+        c.tag = "General SIM";
+        c.type = SIMType.GENERAL;
         return c;
     }
 
@@ -211,14 +228,53 @@ public class SecurityManager {
         SmsManager smsManager = SmsManager.getDefault();
         List<String> list = getInformNumberList();
         SIMInfo newSim = getSIMInformation();
-        for (String tele : list)
-            smsManager.sendTextMessage(tele, null, String.format(mContext.getString(R.string.lost_sms),newSim.phone,newSim.serial,10,20), null, null);
+        for (String tel : list)
+            smsManager.sendTextMessage(tel, null, String.format(mContext.getString(R.string.lost_sms), newSim.phone, newSim.serial, 10, 20), null, null);
+    }
+
+    public enum SIMType {
+        GENERAL, WORK, PERSONAL, DATA_ONLY, GSM_ONLY;
+
+        public static SIMType fromString(String type) {
+            if (type.equals("GENERAL")) {
+                return GENERAL;
+            } else if (type.equals("WORK"))
+                return WORK;
+            else if (type.equals("PERSONAL"))
+                return PERSONAL;
+            else if (type.equals("DATA ONLY"))
+                return DATA_ONLY;
+            else if (type.equals("GSM ONLY"))
+                return GSM_ONLY;
+            else
+                return GENERAL;
+
+        }
+
+        @Override
+        public String toString() {
+            switch (this) {
+                case GENERAL:
+                    return "GENERAL";
+                case WORK:
+                    return "WORK";
+                case PERSONAL:
+                    return "PERSONAL";
+                case DATA_ONLY:
+                    return "DATA ONLY";
+                case GSM_ONLY:
+                    return "GSM ONLY";
+            }
+            return "";
+        }
     }
 
     public class SIMInfo {
         String serial;
         String phone;
         String inform;
+        SIMType type;
+        String tag;
 
         @Override
         public boolean equals(Object o) {
@@ -231,8 +287,10 @@ public class SecurityManager {
 
         @Override
         public String toString() {
-            return "SIM info : " + serial + " : " + phone + " : " + inform;
+            return "SIM info : " + type.toString() + " : " + tag + " : " + serial + " : " + phone + " : " + inform;
         }
+
+
     }
 
 

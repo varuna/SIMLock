@@ -10,33 +10,79 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="New Text"
+            android:textAppearance="?android:attr/textAppearanceMedium"
             android:id="@+id/textView_current_serial"
             android:textColor="@color/white"/>
 
-    <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="10dp">
+    <TableLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent">
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/phone_number_label_"
+                    android:id="@+id/textView"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:textColor="@color/gray"
+                    android:maxLines="1"
+                    android:minLines="1"
+                    android:layout_marginRight="10dp"
+                    android:gravity="left"/>
+            <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:inputType="phone"
+                    android:ems="10"
+                    android:id="@+id/editText_new_phone"
+                    android:layout_weight="1"
+                    android:gravity="right"/>
+        </TableRow>
+        <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sim_tag_label"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/textView"
+                    android:textColor="@color/gray"
+                    android:maxLines="1"
+                    android:minLines="1"
+                    android:layout_marginRight="10dp"
+                    android:gravity="left"/>
+            <EditText
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:id="@+id/editText_new_tag"
+                    android:layout_weight="1"
+                    android:gravity="right" android:inputType="text"/>
+        </TableRow>
+        <TableRow
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sim_type_label"
+                    android:textAppearance="?android:attr/textAppearanceMedium"
+                    android:id="@+id/textView"
+                    android:textColor="@color/gray"
+                    android:maxLines="1"
+                    android:minLines="1"
+                    android:layout_marginRight="10dp"
+                    android:gravity="left"/>
+            <Spinner
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/spinner_sim_types"/>
+        </TableRow>
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/phone_number_label_"
-                android:id="@+id/textView"
-                android:textColor="@color/gray"
-                android:maxLines="1"
-                android:minLines="1"
-                android:layout_marginRight="10dp"
-                android:gravity="left"/>
 
-        <EditText
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:inputType="phone"
-                android:ems="10"
-                android:id="@+id/editText_new_phone"
-                android:layout_weight="1"
-                android:gravity="right"/>
-    </LinearLayout>
+    </TableLayout>
 
 </LinearLayout>

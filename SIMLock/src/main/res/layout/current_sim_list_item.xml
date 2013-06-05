@@ -7,41 +7,49 @@
               android:padding="5dp">
 
     <LinearLayout
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="left"
-            android:orientation="vertical"
-            android:layout_weight="1">
-
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" android:background="@drawable/list_item_background"
+            android:padding="10dp"
+            android:orientation="vertical" android:layout_gravity="center"
+            android:gravity="center"
+            >
         <TextView
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="@string/serial_number_label"
-                android:id="@+id/textView_serial"
-                android:layout_gravity="top"/>
+                android:textAppearance="?android:attr/textAppearanceMedium"
+                android:text="Medium Text"
+                android:id="@+id/textView_sim_tag"
+                android:padding="5dp"
+                android:textColor="@color/white" android:layout_gravity="center_vertical"
+                android:background="@color/list_dark_gray" android:layout_marginBottom="10dp"/>
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_gravity="left"
+                android:orientation="vertical"
+                android:layout_weight="1" android:paddingLeft="5dp">
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/phone_number_label"
-                android:id="@+id/textView_phone"
-                android:layout_gravity="top"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/serial_number_label"
+                    android:id="@+id/textView_serial"
+                    android:layout_gravity="top" android:textColor="@color/white"/>
 
-        <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/inform_number_list_label"
-                android:id="@+id/textView_inform"/>
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/phone_number_label"
+                    android:id="@+id/textView_phone"
+                    android:layout_gravity="top" android:textColor="@color/white"/>
 
+            <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/inform_number_list_label"
+                    android:id="@+id/textView_inform" android:textColor="@color/white"/>
+
+        </LinearLayout>
     </LinearLayout>
-
-    <ImageButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:id="@+id/delete_record"
-            android:src="@android:drawable/ic_delete"
-            android:background="@android:color/transparent"
-            android:layout_gravity="center_vertical|left"
-            android:layout_marginRight="5dp"/>
 
 </LinearLayout>

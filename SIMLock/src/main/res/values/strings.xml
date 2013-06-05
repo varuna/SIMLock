@@ -24,8 +24,24 @@
     <string name="phone_edittext_label">Inform number</string>
     <string name="hint_emergency_phone">inform if stolen</string>
     <string name="inform_number_list_label">Inform the number %1$s</string>
-    <string name="stolen_device_lock_message">Did you know that this device does not belong to you. Owner has locked the device.
-    </string><string name="sim_information_header">SIM information</string><string name="phone_number_label_">Phone</string>
+    <string name="stolen_device_lock_message">Did you know that this device does not belong to you. Owner has locked the
+        device.
+    </string>
+    <string name="sim_information_header">SIM information</string>
+    <string name="phone_number_label_">Phone</string>
+    <string name="sim_tag_label">Tag</string>
+    <string name="sim_type_label">Type</string>
+    <string name="spinner_label_sim_type">SIM type</string>
+    <string name="sim_tag">Tag : %1$s</string>
+    <string name="sim_type">Type : %1$s</string>
+    <string name="record_delete_prompt_message">Serial %1$s </string>
+    <string name="record_delete_title">De-Authorize SIM</string>
 
-
+    <string-array name="sim_types">
+        <item>GENERAL</item>
+        <item>WORK</item>
+        <item>PERSONAL</item>
+        <item>DATA ONLY</item>
+        <item>GSM ONLY</item>
+    </string-array>
 </resources>

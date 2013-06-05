@@ -45,18 +45,12 @@ public class RegisteredSimListAdapter extends BaseAdapter {
             TextView stv = (TextView) root.findViewById(R.id.textView_serial);
             TextView ptv = (TextView) root.findViewById(R.id.textView_phone);
             TextView itv = (TextView) root.findViewById(R.id.textView_inform);
+            TextView ttv = (TextView) root.findViewById(R.id.textView_sim_tag);
 
             stv.setText(String.format(stv.getText().toString(), ((SecurityManager.SIMInfo) getItem(i)).serial));
             ptv.setText(String.format(ptv.getText().toString(), ((SecurityManager.SIMInfo) getItem(i)).phone));
             itv.setText(String.format(itv.getText().toString(), ((SecurityManager.SIMInfo) getItem(i)).inform));
-
-            ImageButton rrb = (ImageButton) root.findViewById(R.id.delete_record);
-            rrb.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View view) {
-                    SimLockApplication.getInstance().getSecurityManager().removeRegisteredSim((SecurityManager.SIMInfo) getItem(i));
-                }
-            });
+            ttv.setText(((SecurityManager.SIMInfo) getItem(i)).tag);
         }else
             root = in.inflate(R.layout.empty_list_item,viewGroup);
 

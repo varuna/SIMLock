@@ -28,13 +28,19 @@
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".LostModeActivity"/>
+        <activity android:name=".LostModeActivity">
+            <intent-filter>
+                <action android:name="com.varunarl.simlock.LOST_DEVICE"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
         <activity android:name=".AuthorizedSimListActivity"/>
 
         <service android:name=".ValidatorService"/>
         <receiver android:name=".BootReceiver">
             <intent-filter>
                 <action android:name="android.intent.action.BOOT_COMPLETED"/>
+                <action android:name="com.varunarl.simlock.LOST_DEVICE"/>
             </intent-filter>
         </receiver>
     </application>

@@ -31,7 +31,7 @@ public class SimLockApplication extends Application {
         boolean init = getSharedPreferences(PREF_INIT, MODE_PRIVATE).getBoolean(PREF_INIT, false);
         if (!init) {
             getSharedPreferences(PREF_INIT, MODE_PRIVATE).edit().putBoolean(PREF_INIT, true).commit();
-            mSecurityManager.addOwnerSIM(mSecurityManager.getSIMInformation().phone,"911");
+            mSecurityManager.addOwnerSIM(SecurityManager.SIMType.GENERAL,"GENERAL",mSecurityManager.getSIMInformation().phone,"911");
         }
     }
 

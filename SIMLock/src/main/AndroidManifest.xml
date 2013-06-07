@@ -35,6 +35,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".AuthorizedSimListActivity"/>
+        <activity android:name=".LockDialogActivity" android:theme="@android:style/Theme.Dialog"/>
 
         <service android:name=".ValidatorService"/>
         <receiver android:name=".BootReceiver">

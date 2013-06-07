@@ -35,13 +35,6 @@ public class SecurityManager {
     }
 
     public static void lostMode(Context context) {
-//        AlarmManager am = (AlarmManager) context.getSystemService(Context.ALARM_SERVICE);
-//        Intent i = new Intent(context, LostModeActivity.class);
-//        i.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-//        i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-//        PendingIntent pi = PendingIntent.getActivity(context, 0, i, PendingIntent.FLAG_UPDATE_CURRENT);
-//        am.set(AlarmManager.RTC_WAKEUP, System.currentTimeMillis() + 2000, pi);
-
         Intent i = new Intent("com.varunarl.simlock.LOST_DEVICE");
         context.sendBroadcast(i);
     }
@@ -117,10 +110,6 @@ public class SecurityManager {
                     return true;
         }
         return false;
-    }
-
-    public boolean isOwnerLockEnabled() {
-        return mContext.getSharedPreferences(OWNER_INFO, Context.MODE_PRIVATE).getInt(OWNER_PRIVATE_PASSWORD, 0) != 0;
     }
 
     private SIMInfo getCurrentSimInfo() {

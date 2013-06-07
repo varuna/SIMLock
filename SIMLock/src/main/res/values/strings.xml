@@ -11,10 +11,12 @@
         %2$s. The device
         location is Lat : %3$d and Lon : %4$d
     </string>
-
+    <string name="emergency_number">911</string>
     <string name="unlock_screen_button_label">Unlock</string>
     <string name="cancel_button_label">Cancel</string>
     <string name="owner_lock_hint">Enter the passcode</string>
+    <string name="owner_lock_prompt">Passcode</string>
+    <string name="owner_lock_title">Owner Lock</string>
     <string name="add_sim_as_owner_button_label">Add to my list</string>
 
     <string name="phone_number_label">Phone number : %1$s</string>

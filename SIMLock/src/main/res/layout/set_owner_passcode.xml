@@ -40,15 +40,8 @@
         <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/unlock_screen_button_label"
-                android:id="@+id/positive_button" android:layout_weight="1" android:background="@drawable/custom_dialog_button_background"
-                android:padding="10dp"/>
-        <View android:background="@color/white" android:layout_height="match_parent" android:layout_width="2dp"/>
-        <Button
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/cancel_button_label"
-                android:id="@+id/negative_button" android:layout_weight="1" android:background="@drawable/custom_dialog_button_background"
+                android:text="@string/set_owner_passcode_button_label"
+                android:id="@+id/neutral_button" android:layout_weight="1" android:background="@drawable/custom_dialog_button_background"
                 android:padding="10dp"/>
     </LinearLayout>
     <View android:background="@color/white" android:layout_height="2dp" android:layout_width="match_parent"/>
